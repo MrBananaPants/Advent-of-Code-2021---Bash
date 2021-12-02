@@ -12,7 +12,7 @@ DOWN_TOTAL=$(echo $DOWN | bc )
 #echo "$UP -> $UP_TOTAL"
 #echo "$DOWN -> $DOWN_TOTAL"
 
-if [$UP_TOTAL -gt $DOWN_TOTAL];
+if [ $UP_TOTAL -gt $DOWN_TOTAL ];
     then
     VERTICAL=$((UP_TOTAL-DOWN_TOTAL))
     else
