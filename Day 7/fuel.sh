@@ -16,16 +16,16 @@ while [ $CURRENT_VALUE -le $MAX_VALUE ]; do
 
     while [ $COUNTER -le $NUMBER_OF_LINES ]; do
         LINE=$(cat $1 | sed "s/,/\n/g" | head -"$COUNTER" | tail -1)
-        if [ $LINE -gt $HORIZONTAL_LEVEL ]; then
+        if [ "$LINE" > "$HORIZONTAL_LEVEL" ]; then
             MATH=$(echo "$LINE-$HORIZONTAL_LEVEL")
             SUBTRACTION=$(bc <<<$MATH)
         fi
-        if [ $LINE -lt $HORIZONTAL_LEVEL ]; then
+        if [ "$LINE" < "$HORIZONTAL_LEVEL" ]; then
             MATH=$(echo "$HORIZONTAL_LEVEL-$LINE")
             SUBTRACTION=$(bc <<<$MATH)
         fi
         CURRENT_TOTAL_FUEL=$((CURRENT_TOTAL_FUEL + SUBTRACTION))
-        #echo "Move from $LINE to $HORIZONTAL_LEVEL: $SUBTRACTION fuel"
+        echo "Move from $LINE to $HORIZONTAL_LEVEL: $SUBTRACTION fuel"
         SUBTRACTION=0
         COUNTER=$((COUNTER + 1))
     done
